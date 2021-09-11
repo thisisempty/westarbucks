@@ -26,7 +26,8 @@ class Product(models.Model):
     korean_name = models.CharField(max_length=45)
     english_name = models.CharField(max_length=45)
     description = models.TextField()
-    nutrition = models.ForeignKey('Nutritions', on_delete=models.CASCADE)
+    nutrition = models.ForeignKey(
+        'Nutritions', on_delete=models.CASCADE, null=True)
 
     class Meta:
         db_table = 'products'
@@ -46,9 +47,10 @@ class Nutritions(models.Model):
     saturated_fat_g = models.DecimalField(max_digits=6, decimal_places=2)
     sugars_g = models.DecimalField(max_digits=6, decimal_places=2)
     protein_g = models.DecimalField(max_digits=6, decimal_places=2)
-    caffeine_mg = models.DecimalField(max_digits=6, decimal_places=2)
-    size_ml = models.CharField(max_length=45)
-    size_fluid_ounce = models.CharField(max_length=45)
+    caffeine_mg = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True)
+    size = models.CharField(max_length=45)
+    size_fluid_ounce = models.CharField(max_length=45, null=True)
 
     class Meta:
         db_table = 'nutritions'
